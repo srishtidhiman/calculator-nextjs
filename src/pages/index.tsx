@@ -12,11 +12,9 @@ export default function Home() {
     const calculator = new StringCalculator();
     try {
       const normalizedStr = unescapeString(input)
-      console.log('normalizedStr', normalizedStr);
-      
       const sum = calculator.add(normalizedStr);
       setResult(sum);
-    } catch (error) {
+    } catch (error: any) {
       setResult(error.message);
     }
   };
