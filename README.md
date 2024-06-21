@@ -1,40 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Calculator Next.js Project
 
-## Getting Started
+This project is a simple String Calculator built with Next.js and TypeScript. It demonstrates Test-Driven Development (TDD) approach and allows users to input strings of numbers to calculate their sum based on specific rules.
 
-First, run the development server:
+## Features
 
+- Handles empty strings and returns 0.
+- Returns the sum of single numbers.
+- Returns the sum of multiple numbers separated by commas.
+- Handles new lines as delimiters between numbers.
+- Supports custom delimiters defined in the format `//[delimiter]\n[numbers…]`.
+
+## Installation
+
+1. **Clone the repository:**
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/srishtidhiman/calculator-nextjs.git
+cd calculator-nextjs
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm install
+npm run dev
+```
+## Usage
+Enter your input string in the textarea provided.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+#### Examples:
+* ` "" returns 0`
+* `"1" returns 1`
+* `"1,5" returns 6`
+* `"1\n2,3" returns 6`
+* `"//;\n1;2" returns 3`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+ Click the "Calculate" button to get the result.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Project Structure
+* `pages/index.tsx`: Main React component handling user input and displaying results.
+* `utils/StringCalculator.ts`: Implementation of the String Calculator logic.
+* `tests/StringCalculator.test.ts`: Unit tests for the String Calculator.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## TDD Approach
 
-## Learn More
+This project follows Test-Driven Development (TDD) principles:
 
-To learn more about Next.js, take a look at the following resources:
+1. **Write a test for a new feature:**
+   - Begin by writing a test that defines the expected behavior of the new feature or improvement.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Run the test and see it fail:**
+   - Execute the test to ensure it fails. This step confirms that the test accurately identifies the missing functionality.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Write the minimum code to pass the test:**
+   - Implement the necessary code to fulfill the requirements specified by the failing test.
 
-## Deploy on Vercel
+4. **Refactor the code while ensuring the tests still pass:**
+   - Improve the code without changing its behavior. Ensure all existing tests continue to pass after refactoring.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Repeat for each new feature or improvement:**
+   - Cycle through the above steps for every new feature, enhancement, or bug fix. Each iteration should start with a failing test.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Testing
+
+To run tests:
+
+1. **Open a terminal:**
+   - Navigate to the project directory.
+
+2. **Execute the following command:**
+```bash
+npm run test
+```
+3. **See test results in the terminal.**
