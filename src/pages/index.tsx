@@ -1,7 +1,4 @@
-import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "@/styles/Home.module.css";
 import { StringCalculator } from '@/StringCalculator';
 import { useState } from 'react';
 
@@ -14,17 +11,27 @@ export default function Home() {
   const calculate = () => {
     const calculator = new StringCalculator();
     try {
-      const sum = calculator.add(input);
+      const normalizedStr = unescapeString(input)
+      console.log('normalizedStr', normalizedStr);
+      
+      const sum = calculator.add(normalizedStr);
       setResult(sum);
     } catch (error) {
       setResult(error.message);
     }
   };
+  const unescapeString = (str: string): string => {
+    return str.replace(/\\n/g, '\n')
+              .replace(/\\t/g, '\t')
+              .replace(/\\r/g, '\r')
+              .replace(/\\f/g, '\f')
+              .replace(/\\b/g, '\b')
+              .replace(/\\\\/g, '\\');
+  };
   return (
     <div>
       <h1>String Calculator</h1>
-      <input
-        type="text"
+      <textarea
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />

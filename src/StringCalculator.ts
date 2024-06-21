@@ -3,19 +3,25 @@ export class StringCalculator {
     if (numbers === "") return 0;
 
     let delimiter = /,|\n/;
+    let numberString = numbers;
+
     if (numbers.startsWith("//")) {
-      const parts = numbers.split("\n");
-      delimiter = new RegExp(parts[0].slice(2));
-      numbers = parts.slice(1).join("\n");
+      const delimiterEndIndex = numbers.indexOf("\n");
+      const delimiterPart = numbers.substring(2, delimiterEndIndex);
+      delimiter = new RegExp(delimiterPart);
+      numberString = numbers.substring(delimiterEndIndex + 1);
     }
 
-    const nums = numbers.split(delimiter).map((num) => parseInt(num, 10));
-    const negatives = nums.filter((num) => num < 0);
-
-    if (negatives.length > 0) {
-      throw new Error(`negative numbers not allowed: ${negatives.join(",")}`);
-    }
+    const nums = numberString.split(delimiter).map(num => parseInt(num, 10));
+    this.checkNegatives(nums);
 
     return nums.reduce((sum, num) => sum + num, 0);
+  }
+
+  private checkNegatives(nums: number[]): void {
+    const negatives = nums.filter(num => num < 0);
+    if (negatives.length > 0) {
+      throw new Error(`negative numbers not allowed: ${negatives.join(',')}`);
+    }
   }
 }
