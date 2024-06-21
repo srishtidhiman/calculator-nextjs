@@ -20,6 +20,7 @@ export default function Home() {
       setResult(error.message);
     }
   };
+
   const unescapeString = (str: string): string => {
     return str.replace(/\\n/g, '\n')
               .replace(/\\t/g, '\t')
@@ -29,14 +30,16 @@ export default function Home() {
               .replace(/\\\\/g, '\\');
   };
   return (
-    <div>
-      <h1>String Calculator</h1>
-      <textarea
+    <div className="container">
+      <h1 className="heading">String Calculator</h1>
+      <input
+        className="input-field"
+        type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button onClick={calculate}>Calculate</button>
-      <div>Result: {result}</div>
+      <button className="submit-button" onClick={calculate}>Calculate</button>
+      <div className="result">Result: {result}</div>
     </div>
   );
 }
